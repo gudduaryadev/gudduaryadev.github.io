@@ -1,102 +1,165 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Guddu Kumar | Resume</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Inter', sans-serif; line-height: 1.6; color: #1e293b; background: #f8fafc; }
-    header { background: #2563eb; color: white; padding: 2rem; text-align: center; border-radius: 10px; margin: 1rem; }
-    header h1 { font-size: 2rem; margin-bottom: .5rem; }
-    header p { font-size: 1rem; }
-    .container { max-width: 800px; margin: 1rem auto; }
-    section { margin: 1rem 0; padding: 1.5rem; background: white; border-radius: 12px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); }
-    h2 { color: #2563eb; margin-bottom: 1rem; font-size: 1.25rem; border-bottom: 2px solid #e2e8f0; padding-bottom: .5rem; }
-    ul { list-style: none; margin-top: .5rem; }
-    li { margin-bottom: .5rem; }
-    .skills span { background: #e2e8f0; padding: .3rem .6rem; border-radius: 6px; margin: .2rem; display: inline-block; font-size: 0.9rem; }
-    footer { text-align: center; padding: 1rem; margin-top: 2rem; color: #64748b; font-size: .9rem; }
-    @media (max-width: 600px) {
-      header h1 { font-size: 1.5rem; }
-      section { margin: 1rem; padding: 1rem; }
-    }
-  </style>
-</head>
-<body>
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Github, Mail, Phone, MapPin, FileDown } from "lucide-react";
 
-  <header>
-    <h1>Guddu Kumar</h1>
-    <p>Java Developer | Spring Boot | REST APIs</p>
-    <p>📞 7870706869 | 📧 guddu.aryadev@gmail.com</p>
-    <p>📍 Noida, Uttar Pradesh, India</p>
-  </header>
+export default function ResumeSite() {
+  useEffect(() => {
+    document.title = "Guddu Arya — Software Engineer";
+  }, []);
 
-  <div class="container">
-  <section>
-    <h2>Professional Summary</h2>
-    <p>Enthusiastic and detail-oriented <strong>Java Developer</strong> with hands-on experience in building scalable backend systems using <strong>Spring Boot, Hibernate, and RESTful APIs</strong>. Adept at problem-solving, writing clean code, and collaborating in agile teams to deliver enterprise-grade applications.</p>
-  </section>
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-slate-50 to-white text-slate-900 scroll-smooth">
+      {/* Hero Section */}
+      <section className="max-w-5xl mx-auto px-6 py-16 text-center">
+        <motion.h1
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-bold mb-4"
+        >
+          Guddu Kumar — Associate Software Engineer
+        </motion.h1>
+        <p className="text-lg md:text-xl text-slate-600 mb-8">
+          Java • Spring Boot • Hibernate • REST APIs • Backend Engineer
+        </p>
+        <div className="flex justify-center gap-4 flex-wrap">
+          <Button asChild variant="secondary">
+            <a href="Guddu_Kumar_resume.pdf" download className="flex items-center gap-2">
+              <FileDown size={18} /> Download Resume
+            </a>
+          </Button>
+        </div>
+      </section>
 
-  <section>
-    <h2>Education</h2>
-    <ul>
-      <li><strong>Bachelor of Computer Applications (BCA)</strong> – Magadh University</li>
-    </ul>
-  </section>
+      {/* Main Content with 2-column layout */}
+      <main className="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-8">
+        {/* Left Column */}
+        <div className="md:col-span-2 space-y-8">
+          <Card id="summary">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold mb-2">Professional Summary</h2>
+              <p className="text-slate-600">
+                Java developer experienced in building scalable backend systems using
+                Spring Boot, Hibernate, and RESTful APIs. Currently contributing to
+                Edhanam — a mutual fund platform — at Proeffico Solutions. Focused on
+                clean code, reliable transactions, and API integrations.
+              </p>
+            </CardContent>
+          </Card>
 
-  <section>
-    <h2>Experience</h2>
-    <ul>
-      <li><strong>Java Developer</strong>, Proeffico Solutions Pvt. Ltd. <em>(Jan 2025 – Present)</em><br/>
-        - Developing and maintaining backend services for <strong>Edhanam</strong>, a mutual fund investment platform.<br/>
-        - Implementing APIs and database interactions using <strong>Spring Boot, Hibernate, and JPA</strong>.<br/>
-        - Ensuring application performance, scalability, and security.<br/>
-        - Collaborating with cross-functional teams to deliver high-quality features.
-      </li>
-    </ul>
-  </section>
+          <Card id="skills">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold mb-2">Technical Skills</h2>
+              <div className="flex flex-wrap gap-2">
+                {["Java", "Spring Boot", "Hibernate / JPA", "REST APIs", "JWT", "Maven", "Git", "Lombok", "MySQL"].map(
+                  (skill) => (
+                    <span
+                      key={skill}
+                      className="px-3 py-1 rounded-full bg-slate-100 text-slate-700 font-medium text-sm"
+                    >
+                      {skill}
+                    </span>
+                  )
+                )}
+              </div>
+            </CardContent>
+          </Card>
 
-  <section>
-    <h2>Projects</h2>
-    <ul>
-      <li><strong>Edhanam – Mutual Fund Platform</strong><br/>
-        - Designed and implemented backend modules for user onboarding and investment workflows.<br/>
-        - Built RESTful APIs ensuring secure and efficient data processing.<br/>
-        <em>Technologies: Java, Spring Boot, Hibernate, JPA, REST APIs, Maven</em>
-      </li>
-    </ul>
-  </section>
+          <Card id="experience">
+            <CardContent className="p-6 space-y-4">
+              <h2 className="text-xl font-semibold">Experience</h2>
+              <div>
+                <h3 className="font-semibold text-slate-800">
+                  Associate Software Engineer — Proeffico Solutions Pvt. Ltd.
+                </h3>
+                <p className="text-sm text-slate-500 mb-2">
+                  Jan 2025 – Present • Noida, UP | Project: Edhanam (Mutual Fund Platform)
+                </p>
+                <ul className="list-disc list-inside text-slate-600 space-y-1">
+                  <li>Built backend APIs for SIP and lump-sum investments using Spring Boot.</li>
+                  <li>Integrated with BSE APIs for onboarding and real-time investment operations.</li>
+                  <li>Implemented JWT-based authentication and transactional flows.</li>
+                  <li>Reduced boilerplate with Lombok and managed builds with Maven.</li>
+                </ul>
+              </div>
+            </CardContent>
+          </Card>
 
-  <section>
-    <h2>Skills</h2>
-    <div class="skills">
-      <span>Java</span><span>Spring Boot</span><span>Hibernate</span>
-      <span>JPA</span><span>REST APIs</span><span>Maven</span>
-      <span>Lombok</span><span>Git</span>
+          <Card id="projects">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold mb-2">Key Project — Edhanam</h2>
+              <p className="text-slate-600 mb-2">
+                Tech stack: Java, Spring Boot, Hibernate, JPA, MySQL, BSE API
+              </p>
+              <ul className="list-disc list-inside text-slate-600 space-y-1">
+                <li>Designed secure REST APIs for mutual fund investment flows.</li>
+                <li>Onboarded customers via BSE integration and ensured data consistency.</li>
+                <li>Explored Redis caching for performance improvements.</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          <Card id="education">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold mb-2">Education</h2>
+              <p className="text-slate-600">
+                Bachelor of Computer Applications (BCA) — Magadh University, Bihar
+              </p>
+            </CardContent>
+          </Card>
+
+          <Card id="certifications">
+            <CardContent className="p-6">
+              <h2 className="text-xl font-semibold mb-2">Certifications</h2>
+              <ul className="list-disc list-inside text-slate-600 space-y-1">
+                <li>Java Programming — SoloLearn</li>
+                <li>Java (Basic) — HackerRank</li>
+              </ul>
+            </CardContent>
+          </Card>
+        </div>
+
+        {/* Right Column: Contact early */}
+        <aside className="space-y-6">
+          <Card>
+            <CardContent className="p-6 space-y-4" id="contact">
+              <h2 className="text-xl font-semibold">Contact</h2>
+              <div className="flex items-center gap-2 text-slate-700">
+                <Phone size={18} /> +91-78707068689
+              </div>
+              <div className="flex items-center gap-2 text-slate-700">
+                <Mail size={18} /> guddu.aryadev@gmail.com
+              </div>
+              <div className="flex items-center gap-2 text-slate-700">
+                <MapPin size={18} /> Noida, Uttar Pradesh, India
+              </div>
+              <Button asChild className="w-full">
+                <a href="mailto:guddu.aryadev@gmail.com">Email Me</a>
+              </Button>
+              <Button asChild variant="outline" className="w-full">
+                <a
+                  href="https://github.com/gudduaryadev"
+                  target="_blank"
+                  rel="noopener"
+                  className="flex items-center gap-2"
+                >
+                  <Github size={18} /> GitHub: gudduaryadev
+                </a>
+              </Button>
+            </CardContent>
+          </Card>
+        </aside>
+      </main>
+
+      {/* Footer */}
+      <footer className="mt-12 py-6 border-t text-center text-slate-500 text-sm space-y-2">
+        <p>© 2025 Guddu Kumar — Associate Software Engineer</p>
+        <p className="font-medium text-slate-700">
+          💼 Open to exciting opportunities in Java & Spring Boot backend development
+        </p>
+      </footer>
     </div>
-  </section>
-
-  <section>
-    <h2>Certifications</h2>
-    <ul>
-      <li>Java Certification – SoloLearn</li>
-    </ul>
-  </section>
-
-  <section>
-    <h2>Personal Details</h2>
-    <ul>
-      <li><strong>Date of Birth:</strong> 01/01/1995</li>
-      <li><strong>Location:</strong> Noida, Uttar Pradesh, India</li>
-    </ul>
-  </section>
-
-  <footer>
-    © 2025 Guddu Kumar | All Rights Reserved
-  </footer>
-  </div>
-
-</body>
-</html>
+  );
+}
